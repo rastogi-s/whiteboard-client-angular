@@ -1,0 +1,28 @@
+
+<!--<div class="card-columns">-->
+  <!--<div class="card w-75" *ngFor="let course of courses">-->
+    <!--<img class="card-img-top"  src="../../../assets/images/image1.jpg" alt="Card Image Cap"/>-->
+    <!--<div class="card-body ">-->
+      <!--<h5 class="card-title">Course 1</h5>-->
+    <!--</div>-->
+    <!--<div class="card-footer">-->
+      <!--<small class="text-muted">Modified: Today</small>-->
+      <!--<a class="btn btn-dark float-right mb-3" href="#">Enroll</a>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<div class="row">
+  <div *ngFor="let course of courses" class="col-sm-3">
+    <div class="card">
+      <img class="card-img-top"  src="../../../assets/images/image1.jpg" alt="Card Image Cap"/>
+      <div class="card-body">
+        <h5 class="card-title">{{course.title}}</h5>
+        <div class="card-footer">
+          <small class="text-muted">Modified: Today</small>
+          <a routerLink="/course/{{course.id}}" class="btn btn-dark float-right " href="#">Enroll</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

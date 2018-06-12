@@ -1,0 +1,15 @@
+.alert{
+  display: none;
+}
+
+.mandatory{
+  color:red;
+}
+
+.needs-validation {
+  width: 100%;
+  max-width: 900px;
+  padding: 15px;
+  margin: auto;
+  margin-top: 100px;
+}
