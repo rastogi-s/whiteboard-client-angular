@@ -16,27 +16,28 @@ export class UserService {
   urlDeleteProfile: string;
 
   constructor() {
-    this.url = '/api/user';
-    this.urlRegister = '/api/register';
-    this.urlLoggedUser = '/api/logged';
-    this.urlUpdateProfile = '/api/profile';
-    this.urlLogin = '/api/login';
-    this.urlPassReset = '/api/reset';
-    this.urlVerifyUsername = '/api/verify';
-    this.urlLogout = '/api/logout';
-    this.urlDeleteProfile = '/api/delete';
+    const base = 'http://localhost:5500';
+    this.url = base + '/api/user';
+    this.urlRegister = base + '/api/register';
+    this.urlLoggedUser = base + '/api/profile';
+    this.urlUpdateProfile = base + '/api/profile';
+    this.urlLogin = base + '/api/login';
+    this.urlPassReset = base + '/api/reset';
+    this.urlVerifyUsername = base + '/api/verify';
+    this.urlLogout = base + '/api/logout';
+    this.urlDeleteProfile = base + '/api/delete';
   }
 
-  createUser(user, callback) {
-
+  createUser(user) {
+    console.log(user);
     return fetch(this.url, {
-      method: 'POST',
+      method: 'post',
       body: JSON.stringify(user),
       headers: {
         'content-type': 'application/json'
       }
 
-    }).then(response => response.json()).then(callback);
+    }).then(response => response.json());
   }
 
   findUserById(userId, callback) {
@@ -60,18 +61,24 @@ export class UserService {
     }).then(callback);
   }
 
-  register(user, callback) {
+  register(user) {
     return fetch(this.urlRegister, {
       method: 'POST',
       body: JSON.stringify(user),
-      credentials: 'same-origin',
+      credentials: 'include',
       headers: {
         'content-type': 'application/json'
       }
-    }).then(response => response.json()).then(callback);
+    }).then(response => {
+      if (response.headers.get('content-type') != null) {
+        return response.json();
+      } else {
+        return null;
+      }
+    });
   }
 
-  login(username, password, callback) {
+  login(username, password) {
     return fetch(this.urlLogin, {
       method: 'POST',
       body: JSON.stringify({username: username, password: password}),
@@ -85,7 +92,7 @@ export class UserService {
       } else {
         return null;
       }
-    }).then(callback);
+    });
   }
 
   sendPasswordResetEmail(emailId, pageLink, callback) {
@@ -108,27 +115,27 @@ export class UserService {
     }).then(callback);
   }
 
-  logout(callback) {
+  logout() {
     return fetch(this.urlLogout, {
       method: 'POST',
       credentials: 'include',
-    }).then(callback);
+    });
   }
 
-  findLoggedUser(callback) {
+  findLoggedUser() {
     return fetch(this.urlLoggedUser, {
-      credentials: 'same-origin'
+      credentials: 'include',
     }).then(response => {
       if (response.headers.get('content-type') != null) {
         return response.json();
       } else {
         return null;
       }
-    }).then(callback);
+    });
   }
 
 
-  updateUserProfile(user, callback) {
+  updateUserProfile(user) {
     return fetch(this.urlUpdateProfile, {
       method: 'PUT',
       body: JSON.stringify(user),
@@ -142,7 +149,7 @@ export class UserService {
       } else {
         return null;
       }
-    }).then(callback);
+    });
   }
 
 

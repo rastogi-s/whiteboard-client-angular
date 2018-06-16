@@ -4,6 +4,7 @@ import { CourseGridComponent } from './component/course-grid/course-grid.compone
 import { LoginComponent } from './component/login/login.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { AdminComponent } from './component/admin/admin.component';
+import {CourseViewerComponent} from './component/course-viewer/course-viewer.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -12,9 +13,10 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'profile', component: ProfileComponent},
-  // { path: 'course/:courseId', component: CourseViewerComponent },
-  // { path: 'course/:courseId/module/:moduleId', component: CourseViewerComponent },
-  // { path: 'course/:courseId/module/:moduleId/lesson/:lessonId', component: CourseViewerComponent },
+  { path: 'course/:courseId', component: CourseViewerComponent },
+  { path: 'course/:courseId/module/:moduleId', component: CourseViewerComponent },
+  { path: 'course/:courseId/module/:moduleId/lesson/:lessonId', component: CourseViewerComponent },
+  { path: 'course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId', component: CourseViewerComponent },
   { path: '**', component: CourseGridComponent} // last
 ];
 export const routing = RouterModule.forRoot(appRoutes);

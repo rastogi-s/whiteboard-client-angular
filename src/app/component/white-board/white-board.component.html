@@ -22,14 +22,14 @@
         <!--<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
         <button class="btn btn-dark my-2 my-sm-0 mr-2" routerLink="/login" [routerLinkActive]="['active']"
         type="button">Login</button>
-        <button class="btn btn-dark my-2 my-sm-0 mr-2" [routerLinkActive]="['active']" routerLink="/register"
+        <button class="btn btn-dark my-2 my-sm-0 mr-2" routerLink="/register" [routerLinkActive]="['active']"
         type="button">Sign Up</button>
       </form>
     </div>
   </nav>
 </header>
 
-<div class="container mainContainer">
+<div class="mainContainer">
   <router-outlet></router-outlet>
 </div>
 <footer class="footer bg-dark">

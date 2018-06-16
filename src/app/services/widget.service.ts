@@ -3,13 +3,15 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class TopicService {
+export class WidgetService {
 
   constructor() { }
+
   COURSE_URL = 'http://localhost:8080/api/course';
 
-  findAllTopicsForLesson(courseId, moduleId, lessonId) {
-    return fetch(this.COURSE_URL + '/' + courseId + '/module/' + moduleId + '/lesson/' + lessonId + '/topic',
+  findAllWidgetsForTopics(courseId, moduleId, lessonId, topicId) {
+    return fetch(this.COURSE_URL + '/' + courseId + '/module/' +
+      moduleId + '/lesson/' + lessonId + '/topic/' + topicId + '/widget',
       {
         method: 'GET'
       }).then(function (response) {
@@ -20,4 +22,5 @@ export class TopicService {
       }
     });
   }
+
 }

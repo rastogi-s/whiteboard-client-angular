@@ -12,15 +12,29 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
+  badUserNamePass: boolean;
+
+
+  constructor(private router: Router, private userService: UserService) {
+    this.badUserNamePass = false;
+  }
+
 
   login(username, password) {
     console.log([username, password]);
-    this.router.navigate(['profile']);
+
+    this.userService
+      .login(username, password)
+      .then((user) => {
+        if (user != null) {
+          this.router.navigate(['profile']);
+        } else {
+          this.badUserNamePass = true;
+          console.log('not valid username and password');
+        }
+      });
   }
 
-  constructor(private router: Router, private userService: UserService) {
-
-  }
 
   ngOnInit() {
   }
