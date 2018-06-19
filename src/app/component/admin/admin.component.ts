@@ -40,7 +40,6 @@ export class AdminComponent implements OnInit {
           this.courseSection[sections[s].courseId].push(sections[s]);
         }
       }
-      console.log(this.courseSection);
     });
 
     // this.sectionName = '';
@@ -49,7 +48,7 @@ export class AdminComponent implements OnInit {
   }
 
   createSection(courseId, sectionName, seats, courseName) {
-    console.log(sectionName, seats);
+
     if (sectionName == null || sectionName === '') {
       sectionName = courseName + ' Section ' + 1; // (this.courseSection[courseId].length + 1 ) ;
     }
@@ -67,7 +66,7 @@ export class AdminComponent implements OnInit {
 
 
   updateSection(sectionId, sectionName, seats, oldSection) {
-    console.log(sectionName, seats);
+
     const newIncrement = oldSection.maxSeats - seats;
     var newAvailable = oldSection.availableSeats - newIncrement;
     if (newAvailable < 0) {
@@ -110,7 +109,6 @@ export class AdminComponent implements OnInit {
             this.courseSection[sections[s].courseId].push(sections[s]);
           }
         }
-        console.log(this.courseSection);
       })
     );
   }

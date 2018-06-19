@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LessonService} from '../../services/lesson.service';
 import {ActivatedRoute} from '@angular/router';
-import {Course} from '../../models/course.model.client';
 import {LessonModelClient} from '../../models/lesson.model.client';
 
 @Component({
@@ -30,10 +29,10 @@ export class LessonTabsComponent implements OnInit {
   }
 
   loadLessons() {
-    this.service.findAllLessonsForModule(this.courseId, this.moduleId)
-      .then(lessons => this.lessons = lessons);
-
-    console.log(this.lessons);
+    if (this.courseId !== undefined && this.moduleId !== undefined) {
+      this.service.findAllLessonsForModule(this.courseId, this.moduleId)
+        .then(lessons => this.lessons = lessons);
+    }
   }
 
   ngOnInit() {

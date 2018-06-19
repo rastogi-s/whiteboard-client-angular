@@ -10,7 +10,7 @@
         <div class="col-sm-10">
           <input type="text" placeholder="Xyz" id="username" class="form-control"
                  required [(ngModel)]="username" name="username" #userName="ngModel" >
-          <div [hidden]="userName.valid || userName.pristine"  class="alert alert-danger">
+          <div [hidden]="userName.valid || userName.pristine"  class="mt-2 alert alert-danger">
             Username required!!
           </div>
         </div>
@@ -22,7 +22,7 @@
         <div class="col-sm-10">
           <input type="password" placeholder="123qwe#$" id="password" class="form-control" required
                   [(ngModel)]="password" name="password" #pass="ngModel">
-          <div [hidden]="pass.valid || pass.pristine" class="alert alert-danger">
+          <div [hidden]="pass.valid || pass.pristine" class="mt-2 alert alert-danger">
             Password required!!
           </div>
           <div class="invalid-feedback invalid-password">

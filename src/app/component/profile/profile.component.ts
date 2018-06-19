@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   courseMap = {};
 
   update(user: User) {
-    this.userService.updateUserProfile(user).then((status) => console.log(status));
+    this.userService.updateUserProfile(user);
   }
 
   logout() {
@@ -32,7 +32,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('in gere');
     this.userService.findLoggedUser().then(
       user => this.user = user).then(() =>
       this.service.findSectionsForStudent()).then((sections) =>

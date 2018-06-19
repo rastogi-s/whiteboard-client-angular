@@ -15,7 +15,7 @@
                  id="username" class="form-control" required #userName="ngModel">
 
 
-          <div [hidden]="userName.valid || userName.pristine" class="alert alert-danger">
+          <div [hidden]="userName.valid || userName.pristine" class="mt-2 alert alert-danger">
             Username required!!
           </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="col-sm-10">
           <input type="password" placeholder="123qwe#$" [(ngModel)]="password" name="password"
                  id="password" class="form-control" required #pass="ngModel">
-            <div [hidden]="pass.valid || pass.pristine" class="alert alert-danger">
+            <div [hidden]="pass.valid || pass.pristine" class="mt-2 alert alert-danger">
             Password required!!
           </div>
         </div>
@@ -38,9 +38,9 @@
 
         <div class="col-sm-10">
           <input type="password" placeholder="123qwe#$" id="verifypass"
-                 [(ngModel)]="verifyPassword" name="verifyPassword" class="form-control" required #vPass="ngModel">
-          <div [hidden] = "vPass.valid || vPass.pristine" class="alert alert-danger">
-            Please enter a valid password!
+                 [(ngModel)]="verifyPassword" name="verifyPassword" class="form-control" [pattern]="password" required #vPass="ngModel">
+          <div [hidden] = "vPass.valid || vPass.pristine" class="mt-2 alert alert-danger">
+            Password do not match!!
           </div>
         </div>
       </div>

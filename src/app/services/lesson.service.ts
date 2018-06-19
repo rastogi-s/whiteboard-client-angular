@@ -15,6 +15,7 @@ export class LessonService {
       {
         method: 'GET'
       }).then(function (response) {
+
       if (response.headers.get('content-type') != null) {
         return response.json();
       } else {

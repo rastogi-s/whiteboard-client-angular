@@ -35,11 +35,14 @@ export class WidgetListComponent implements OnInit {
   }
 
   loadWidgets(courseId, moduleId, lessonId, topicId) {
-    this.service.findAllWidgetsForTopics(courseId, moduleId, lessonId, topicId).then(widgets => {
-      if (widgets.length > 0) {
-        this.widgets = this.sortByWidgetOrder(widgets);
-      }
-    });
+    this.widgets = [];
+    if (courseId !== undefined && moduleId !== undefined && lessonId !== undefined && topicId !== undefined) {
+      this.service.findAllWidgetsForTopics(courseId, moduleId, lessonId, topicId).then(widgets => {
+        if (widgets.length > 0) {
+          this.widgets = this.sortByWidgetOrder(widgets);
+        }
+      });
+    }
   }
 
   ngOnInit() {

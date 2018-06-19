@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
 
 
   login(username, password) {
-    console.log([username, password]);
 
     this.userService
       .login(username, password)
@@ -36,7 +35,6 @@ export class LoginComponent implements OnInit {
           }
         } else {
           this.badUserNamePass = true;
-          console.log('not valid username and password');
         }
       });
   }
