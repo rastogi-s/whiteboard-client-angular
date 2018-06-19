@@ -16,7 +16,12 @@ export class UserService {
   urlDeleteProfile: string;
 
   constructor() {
-    const base = 'http://localhost:5500';
+    let base;
+    if (!location.toString().includes('localhost')) {
+      base = 'https://whiteboard-middle-tier-node.herokuapp.com';
+    } else {
+      base = 'http://localhost:5500';
+    }
     this.url = base + '/api/user';
     this.urlRegister = base + '/api/register';
     this.urlLoggedUser = base + '/api/profile';
@@ -26,39 +31,6 @@ export class UserService {
     this.urlVerifyUsername = base + '/api/verify';
     this.urlLogout = base + '/api/logout';
     this.urlDeleteProfile = base + '/api/delete';
-  }
-
-  createUser(user) {
-    console.log(user);
-    return fetch(this.url, {
-      method: 'post',
-      body: JSON.stringify(user),
-      headers: {
-        'content-type': 'application/json'
-      }
-
-    }).then(response => response.json());
-  }
-
-  findUserById(userId, callback) {
-    return fetch(this.url + '/' + userId).then(response => response.json()).then(callback);
-  }
-
-
-  updateUser(userId, user, callback) {
-    return fetch(this.url + '/' + userId, {
-      method: 'PUT',
-      body: JSON.stringify(user),
-      headers: {
-        'content-type': 'application/json'
-      }
-    }).then(response => response.json()).then(callback);
-  }
-
-  deleteUser(userId, callback) {
-    return fetch(this.url + '/' + userId, {
-      method: 'DELETE',
-    }).then(callback);
   }
 
   register(user) {
@@ -95,25 +67,6 @@ export class UserService {
     });
   }
 
-  sendPasswordResetEmail(emailId, pageLink, callback) {
-    return fetch(this.urlPassReset, {
-      method: 'POST',
-      body: emailId + ' ' + pageLink,
-      // headers: {
-      //     'content-type': 'application/json'
-      // }
-    }).then(callback);
-  }
-
-  verifyUser(username, callback) {
-    return fetch(this.urlVerifyUsername + '/' + username).then(response => {
-      if (response.headers.get('content-type') != null) {
-        return response.json();
-      } else {
-        return null;
-      }
-    }).then(callback);
-  }
 
   logout() {
     return fetch(this.urlLogout, {
@@ -152,11 +105,57 @@ export class UserService {
     });
   }
 
+  // sendPasswordResetEmail(emailId, pageLink, callback) {
+  //   return fetch(this.urlPassReset, {
+  //     method: 'POST',
+  //     body: emailId + ' ' + pageLink,
+  //     // headers: {
+  //     //     'content-type': 'application/json'
+  //     // }
+  //   }).then(callback);
+  // }
+  //
+  // verifyUser(username, callback) {
+  //   return fetch(this.urlVerifyUsername + '/' + username).then(response => {
+  //     if (response.headers.get('content-type') != null) {
+  //       return response.json();
+  //     } else {
+  //       return null;
+  //     }
+  //   }).then(callback);
+  // }
+  //
+  // createUser(user) {
+  //   console.log(user);
+  //   return fetch(this.url, {
+  //     method: 'post',
+  //     body: JSON.stringify(user),
+  //     headers: {
+  //       'content-type': 'application/json'
+  //     }
+  //
+  //   }).then(response => response.json());
+  // }
+  //
+  // findUserById(userId, callback) {
+  //   return fetch(this.url + '/' + userId).then(response => response.json()).then(callback);
+  // }
+  //
+  //
+  // updateUser(userId, user, callback) {
+  //   return fetch(this.url + '/' + userId, {
+  //     method: 'PUT',
+  //     body: JSON.stringify(user),
+  //     headers: {
+  //       'content-type': 'application/json'
+  //     }
+  //   }).then(response => response.json()).then(callback);
+  // }
+  //
+  // deleteUser(userId, callback) {
+  //   return fetch(this.url + '/' + userId, {
+  //     method: 'DELETE',
+  //   }).then(callback);
+  // }
 
-//  findAllUsers(callback) {
-//   return $.ajax({
-//     url: this.url,
-//     success: callback
-//   });
-// }
 }
