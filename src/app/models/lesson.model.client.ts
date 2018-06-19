@@ -1,4 +1,4 @@
-export class Lesson {
+export class LessonModelClient {
 
   id: string;
   title: string;

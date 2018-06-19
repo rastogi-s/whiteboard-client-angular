@@ -1,3 +1,62 @@
-<p>
-  section-list works!
-</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+  <i class="btn fa fa-2x fa-times text-light mr-3" routerLink="/home"></i>
+  <a class="navbar-brand" href="#">{{course.title}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+
+<div class="alert alert-info" [hidden]="user!=null">
+    Please login to access enrollment feature.
+</div>
+
+<div class="alert alert-info" [hidden]="!(user!=null &&
+(user.username === 'admin' || user.username=== 'faculty'))">
+  Only students allowed to enroll.
+</div>
+
+
+<div class="container-fluid">
+  <div class="row navbar navbar-expand-lg bg-secondary text-light mb-2">
+  <div class="col-4">
+    <strong>Section Name</strong>
+  </div>
+  <div class="col-3">
+    <strong>Maximum # of Seats</strong>
+  </div>
+  <div class="col-3">
+    <strong>Available Seats</strong>
+  </div>
+  <div class="col-2">
+  </div>
+</div>
+  <div class="row bg-light text-dark p-2 pl-2 mb-2" *ngFor="let section of sections">
+    <div class="col-4">
+      {{section.name}}
+    </div>
+    <div class="col-3">
+      {{section.maxSeats}}
+    </div>
+    <div class="col-3">
+      {{section.availableSeats}}
+    </div>
+    <div class="col-2">
+      <button [disabled]="user==null || enrollAllowed == false || user.username === 'admin' || user.username=== 'faculty'"
+              [hidden]="!((!checkIfSectionAlreadyEnrolled(section)) && section.availableSeats !== 0)"
+              (click)="enroll(section)"
+              class="float-right btn btn-primary">Enroll
+      </button>
+      <button [disabled]="user==null" class="float-right btn btn-danger" [hidden]="!checkIfSectionAlreadyEnrolled(section)"
+              (click)="unenroll(section)">Un-Enroll
+      </button>
+
+      <h6 class="float-right" [hidden]="!(section.availableSeats == 0 && !checkIfSectionAlreadyEnrolled(section))">
+        No Seats Left</h6>
+    </div>
+  </div>
+
+
+
+
+</div>

@@ -27,7 +27,13 @@ export class LoginComponent implements OnInit {
       .login(username, password)
       .then((user) => {
         if (user != null) {
-          this.router.navigate(['profile']);
+          if (user.username === 'admin') {
+            this.router.navigate(['admin']);
+          } else if (user.username === 'faculty') {
+            this.router.navigate(['faculty']);
+          } else {
+            this.router.navigate(['profile']);
+          }
         } else {
           this.badUserNamePass = true;
           console.log('not valid username and password');

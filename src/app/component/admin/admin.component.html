@@ -1,3 +1,108 @@
-<p>
-  admin works!
-</p>
+<div class="row navbar navbar-expand-lg  bg-dark text-light m-3">
+  <div class="col text-center">
+    <h3>Course List</h3>
+  </div>
+</div>
+
+<div *ngFor="let course of courses" class="m-3">
+  <div class="row bg-light text-dark p-2 mx-3" data-toggle="collapse"
+       [attr.data-target]=" '#'+ course.id">
+    <div class="col">
+      <h5>{{course.title}}</h5>
+    </div>
+    <div class="col">
+      <i class="btn fa fa-angle-down fa-2x float-right p-0 navbar-toggler" data-toggle="collapse"
+         [attr.data-target]=" '#'+ course.id "> </i>
+    </div>
+  </div>
+
+  <div class="collapse navbar-collapse bg-dark text-dark p-3 mx-3 " id={{course.id}}>
+    <form class="form-inline" #formInline="ngForm">
+      <input [(ngModel)]="sectionName"
+             placeholder="Section Name" name="sectionName"
+             class="form-control mr-4">
+      <input [(ngModel)]="seats"
+             placeholder="Seats available" name="seats"
+             class="form-control mr-4">
+      <button (click)="createSection(course.id, sectionName, seats, course.title); formInline.reset(); "
+              class="btn btn-success">
+        Add Section
+      </button>
+    </form>
+    <!--{{edit && editCourseId==course.id}}-->
+    <ul class="list-group mt-3">
+      <li class="list-group-item bg-primary text-light">
+        <div class="row">
+          <div class="col">
+            Sections
+          </div>
+          <div class="col">
+            Max Seats
+          </div>
+          <div class="col">
+            Available Seats
+          </div>
+          <div class="col">
+
+          </div>
+        </div>
+      </li>
+      <li *ngFor="let section of courseSection[course.id]"
+          class="list-group-item ">
+        <div class="row" [hidden]="(edit && editSectionId==section._id)">
+          <div class="col" >
+            {{section.name}}
+          </div>
+          <div class="col">
+            {{section.maxSeats}}
+          </div>
+          <div class="col">
+            {{section.availableSeats}}
+          </div>
+          <div class="col">
+            <i class="fa fa-trash btn float-right" (click)="deleteSection(section._id)"></i>
+            <i class="fa fa-pencil-alt btn float-right" (click)="edit=true;
+             editSectionId=section._id; sectionName=section.name; seats = section.maxSeats "></i>
+            <i class="fa fa-check btn float-right" (click)="updateSection(section._id, sectionName, seats)"></i>
+          </div>
+        </div>
+        <div class="row" [hidden]="!(edit && editSectionId==section._id)">
+          <div class="col" >
+            <input [(ngModel)]="sectionName"
+                   placeholder="Section Name" name="sectionName"
+                   class="form-control" >
+          </div>
+          <div class="col">
+            <input [(ngModel)]="seats"
+                   placeholder="Seats available"  name="seats"
+                   class="form-control">
+          </div>
+          <div class="col">
+            {{section.availableSeats}}
+          </div>
+          <div class="col">
+            <i class="fa fa-trash btn float-right disabled" ></i>
+            <i class="fa fa-times btn float-right"  (click)="edit=false; editSectionId=''; sectionName='';
+             seats = '';" ></i>
+            <i class="fa fa-check btn float-right" (click)="updateSection(section._id, sectionName, seats, section);
+                 sectionName=''; seats = '';"></i>
+          </div>
+        </div>
+
+
+
+        <!--<i class="fa fa-pencil btn float-right" (click)="edit(section._id)"></i>-->
+      </li>
+    </ul>
+
+    <!--*ngFor="let section of fetchSections(course.id)"-->
+    <!--<div class="row" >-->
+    <!--<div class="col"></div>-->
+    <!--</div>-->
+  </div>
+</div>
+
+
+<!--<div class="container">-->
+
+<!--</div>-->

@@ -1,15 +1,50 @@
-<div class="p-5 bg-light rounded ">
+<div class="row navbar navbar-expand-lg  bg-dark text-light m-3" [hidden]="!(registeredCourses.length > 0)">
+  <div class="col text-center">
+    <h3>Registered Courses</h3>
+  </div>
+</div>
+
+<div class="p-5 bg-light rounded " [hidden]="!(registeredCourses.length > 0)">
   <div class="row">
-    <div *ngFor="let course of courses" class="col-sm-3">
+    <div *ngFor="let course of registeredCourses" class="col-sm-3" >
       <div class="card mt-2 mb-2">
         <img class="card-img-top" src="../../../assets/images/image1.jpg" alt="Card Image Cap"/>
         <div class="card-body">
           <h5 class="card-title">{{course.title}}</h5>
-          <!--<small class="text-muted">Modified: Today</small>-->
+          <small class="text-muted" [hidden]="!checkPrivacy(course.id)" ># private</small>
+          <small class="text-muted" [hidden]="checkPrivacy(course.id)" ># public</small>
         </div>
         <div class="card-footer">
-          <a routerLink="/course/{{course.id}}/enroll" class="btn btn-dark float-left " href="#">Enroll</a>
+          <a routerLink="/course/{{course.id}}/section" class="btn btn-dark float-left " href="#">Enroll</a>
           <a routerLink="/course/{{course.id}}" class="btn btn-dark float-right " href="#">View</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row navbar navbar-expand-lg  bg-dark text-light m-3" [hidden]="!(registeredCourses.length > 0)" >
+  <div class="col text-center">
+    <h3>Non Registered Courses</h3>
+  </div>
+</div>
+
+<div class="p-5 bg-light rounded ">
+  <div class="row">
+    <div *ngFor="let course of nonRegisteredCourses" class="col-sm-3">
+      <div class="card mt-2 mb-2">
+        <img class="card-img-top" src="../../../assets/images/image1.jpg" alt="Card Image Cap"/>
+        <div class="card-body">
+          <h5 class="card-title">{{course.title}}</h5>
+          <small class="text-muted" [hidden]="!checkPrivacy(course.id)" ># private</small>
+          <small class="text-muted" [hidden]="checkPrivacy(course.id)" ># public</small>
+        </div>
+        <div class="card-footer">
+          <button  routerLink="/course/{{course.id}}/section" class="btn btn-dark float-left " href="#">Enroll</button>
+          <button [disabled]="checkPrivacy(course.id)" routerLink="/course/{{course.id}}"
+                  class="btn btn-dark float-right" href="#" >View</button>
         </div>
 
       </div>

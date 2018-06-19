@@ -21,6 +21,8 @@ import { LessonTabsComponent } from './component/lesson-tabs/lesson-tabs.compone
 import { TopicPillsComponent } from './component/topic-pills/topic-pills.component';
 import { WidgetListComponent } from './component/widget-list/widget-list.component';
 import { SectionListComponent } from './component/section-list/section-list.component';
+import {CoursePrivacyService} from './services/course-privacy.service';
+import { FacultyAccessComponent } from './component/faculty-access/faculty-access.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { SectionListComponent } from './component/section-list/section-list.comp
     LessonTabsComponent,
     TopicPillsComponent,
     WidgetListComponent,
-    SectionListComponent
+    SectionListComponent,
+    FacultyAccessComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { SectionListComponent } from './component/section-list/section-list.comp
     UserService,
     TopicService,
     LessonService,
-    WidgetService
+    WidgetService,
+    CoursePrivacyService
   ],
   bootstrap: [AppComponent]
 })

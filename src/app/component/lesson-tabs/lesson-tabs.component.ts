@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LessonService} from '../../services/lesson.service';
 import {ActivatedRoute} from '@angular/router';
 import {Course} from '../../models/course.model.client';
-import {Lesson} from '../../models/Lesson';
+import {LessonModelClient} from '../../models/lesson.model.client';
 
 @Component({
   selector: 'app-lesson-tabs',
@@ -14,7 +14,7 @@ export class LessonTabsComponent implements OnInit {
   courseId;
   moduleId;
   lessonId;
-  lessons: Lesson[] = [];
+  lessons: LessonModelClient[] = [];
 
   constructor(private service: LessonService,
               private route: ActivatedRoute) {

@@ -1,0 +1,24 @@
+<div class="row navbar navbar-expand-lg  bg-dark text-light m-3" >
+  <div class="col text-center">
+    <h3>Course List</h3>
+  </div>
+</div>
+
+<div class="row bg-light text-dark p-2 mx-3 mb-1" *ngFor="let course of courses">
+  <div class="col">
+    <h5>{{course.title}}</h5>
+  </div>
+  <div class="col" >
+    <h5 [hidden]="!checkPrivacy(course.id)"># private</h5>
+    <h5 [hidden]="checkPrivacy(course.id)"># public</h5>
+  </div>
+
+  <div class="col">
+    <button (click)="makePrivate(course.id)"
+            class="float-right btn btn-danger" [hidden]="checkPrivacy(course.id)">Make Private</button>
+    <button (click)="makePublic(course.id)"
+            class="float-right btn btn-success" [hidden]="!checkPrivacy(course.id)">Make Public</button>
+  </div>
+</div>
+
+
