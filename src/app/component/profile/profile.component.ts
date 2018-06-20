@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
   courseMap = {};
 
   update(user: User) {
+    delete user.password;
     this.userService.updateUserProfile(user);
   }
 
