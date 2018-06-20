@@ -40,6 +40,7 @@ export class WidgetListComponent implements OnInit {
       this.service.findAllWidgetsForTopics(courseId, moduleId, lessonId, topicId).then(widgets => {
         if (widgets.length > 0) {
           this.widgets = this.sortByWidgetOrder(widgets);
+          console.log(widgets);
         }
       });
     }

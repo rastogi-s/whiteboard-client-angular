@@ -35,10 +35,31 @@
         <img src="{{widget.src}}" width="40%" height="40%" title={{widget.text}}/>
       </div>
       <div *ngSwitchCase="'Exam'">
-        <h1>Exam Widget</h1>
+        <h1>{{widget.title}}</h1>
+        <div class="row bg-secondary"  *ngFor="let item of widget.questions" ></div>
       </div>
       <div *ngSwitchCase="'Assignment'">
-        <h1>Assignment</h1>
+        <h1>{{widget.title}}</h1>
+        <div class="my-3">
+            Assignment Description
+        </div>
+        <div><textarea row="5" class="form-control" placeholder="Enter answer">
+
+        </textarea> </div>
+        <div class="row  bg-white px-1 py-2 mx-1 my-2 border rounded">
+          <div class="col float-left">
+            <button class="btn btn-dark">Upload File</button>
+          </div>
+        </div>
+          <!--<div class="input-group mb-3">-->
+            <!--<div class="input-group-prepend">-->
+              <!--<button class="btn m-1" id="basic-addon1">Browse File</button>-->
+            <!--</div>-->
+            <!--<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">-->
+          <!--</div>-->
+        <div class="">
+          <input class="form-control" placeholder="Submit Link" >
+        </div>
       </div>
     </div>
   </div>
