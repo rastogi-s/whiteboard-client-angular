@@ -7,6 +7,7 @@
     * HTML
     * CSS
 
+#### [Live link](https://whiteboard-client-angular.herokuapp.com/)
 #### Check out the [Wiki]() for details.
 
         
